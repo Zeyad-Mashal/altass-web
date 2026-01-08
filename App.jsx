@@ -377,11 +377,11 @@ const App = () => {
                           onChange={handleChange}
                           className="w-full px-8 py-5 rounded-[24px] border border-zinc-100 focus:ring-4 focus:ring-red-600/10 focus:border-red-600 outline-none bg-zinc-50 font-bold text-lg appearance-none cursor-pointer"
                         >
-                          <option>SUV (دفع رباعي)</option>
-                          <option>سيدان فاخرة</option>
-                          <option>سيارات كهربائية</option>
-                          <option>سيارات ذوي الهمم</option>
-                          <option>مبادرة المصريين بالخارج</option>
+                          <option>SUV → سيارة دفع رباعي</option>
+                          <option>Sports → رياضي</option>
+                          <option>Sedan → سيدان</option>
+                          <option>VAN → فان / شاحنة صغيرة</option>
+                          <option>Hatchback → هاتشباك</option>
                         </select>
                       </div>
                       <div className="space-y-2">
