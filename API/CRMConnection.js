@@ -3,6 +3,64 @@ const PIPEDRIVE_API_TOKEN = 'd98a3da1deb5b34bee761cbd8a6d47f2c10e3f49';
 const PIPEDRIVE_API_BASE = 'https://api.pipedrive.com/v1';
 const PIPEDRIVE_PERSONS_URL = `${PIPEDRIVE_API_BASE}/persons`;
 const PIPEDRIVE_LEADS_URL = `${PIPEDRIVE_API_BASE}/leads`;
+const PIPEDRIVE_LABELS_URL = `${PIPEDRIVE_API_BASE}/leadLabels`;
+
+/**
+ * Get or create "Landing Page" label
+ * @returns {Promise<number|null>} Label ID or null if failed
+ */
+const getOrCreateLandingPageLabel = async () => {
+    try {
+        // First, try to find existing label
+        const searchResponse = await fetch(`${PIPEDRIVE_LABELS_URL}?api_token=${PIPEDRIVE_API_TOKEN}&term=Landing Page`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const searchData = await searchResponse.json().catch(() => ({}));
+
+        if (searchData.success && searchData.data && searchData.data.length > 6) {
+            // Use label at index 6 (7th label)
+            const labelId = searchData.data[6].id;
+            console.log('Found "Landing Page" label at index 6 with ID:', labelId);
+            return labelId;
+        } else if (searchData.success && searchData.data && searchData.data.length > 0) {
+            // Fallback to index 0 if index 6 doesn't exist
+            const labelId = searchData.data[0].id;
+            console.log('Using label at index 0 (index 6 not available) with ID:', labelId);
+            return labelId;
+        }
+
+        // Label doesn't exist, create it
+        console.log('Creating new "Landing Page" label...');
+        const createResponse = await fetch(`${PIPEDRIVE_LABELS_URL}?api_token=${PIPEDRIVE_API_TOKEN}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: 'Landing Page',
+                color: '#e32a26' // Red color matching your brand
+            }),
+        });
+
+        const createData = await createResponse.json().catch(() => ({}));
+
+        if (createResponse.ok && createData.success && createData.data) {
+            const labelId = createData.data.id;
+            console.log('Created "Landing Page" label with ID:', labelId);
+            return labelId;
+        }
+
+        console.warn('Failed to create label, continuing without label');
+        return null;
+    } catch (error) {
+        console.error('Error getting/creating label:', error);
+        return null;
+    }
+};
 
 /**
  * Send lead data to Pipedrive CRM
@@ -102,7 +160,10 @@ export const sendToPipedrive = async (formData) => {
             }
         }
 
-        // Step 3: Create Lead with ONLY title and person_id (no notes allowed)
+        // Step 3: Get or create "Landing Page" label
+        const landingPageLabelId = await getOrCreateLandingPageLabel();
+
+        // Step 4: Create Lead with title, person_id, and label
         // Build descriptive title with car type if available
         let leadTitle = formData.fullName.trim();
         if (formData.carType && formData.carType.trim()) {
@@ -114,7 +175,12 @@ export const sendToPipedrive = async (formData) => {
             person_id: personId,  // Must be integer, not person_name
         };
 
-        console.log('Step 2: Creating Lead (without notes - API restriction):', leadData);
+        // Add label if available
+        if (landingPageLabelId) {
+            leadData.label_ids = [landingPageLabelId];
+        }
+
+        console.log('Step 2: Creating Lead with label:', leadData);
 
         const response = await fetch(`${PIPEDRIVE_LEADS_URL}?api_token=${PIPEDRIVE_API_TOKEN}`, {
             method: 'POST',
