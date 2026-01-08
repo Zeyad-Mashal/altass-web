@@ -18,7 +18,6 @@ const App = () => {
     phone: "",
     carType: "SUV (دفع رباعي)",
     budget: "",
-    notes: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -114,8 +113,15 @@ const App = () => {
 
       if (!crmResult.success) {
         console.error("CRM Error:", crmResult.error);
-        // Continue even if CRM fails - don't block the user
+        // Show error to user if CRM fails
+        setError(
+          `حدث خطأ في إرسال البيانات: ${crmResult.error}. يرجى المحاولة مرة أخرى.`
+        );
+        setIsSubmitting(false);
+        return;
       }
+
+      console.log("CRM Success:", crmResult.message);
 
       // Also try the original API endpoint (if it exists)
       try {
