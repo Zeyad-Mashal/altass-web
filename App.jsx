@@ -187,45 +187,154 @@ const App = () => {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-48 md:pb-40 flex items-center overflow-hidden">
+      {/* Hero Section with Form */}
+      <section className="relative pt-32 pb-20 md:pt-48 md:pb-40 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-l from-black via-black/40 to-transparent z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-l from-black via-black/60 to-transparent z-10"></div>
           <img
             src="https://www.altassmotors.com/uploads/sliders/NPtcN4iqaAAMzeKUpxssF5CNiZRi97DFPcnRBwf2.webp"
             alt="Dubai Luxury"
             className="w-full h-full object-cover opacity-60 scale-110"
           />
         </div>
-        <div className="container mx-auto px-6 relative z-20">
-          <div className="max-w-3xl">
-            <span className="inline-block bg-red-600/20 text-red-500 border border-red-600/30 px-6 py-2 rounded-full text-sm font-black mb-8 tracking-wide">
-              خدمة استيراد السيارات الحصرية لمصر
-            </span>
-            <h1 className="text-5xl md:text-8xl font-black mb-8 leading-[1.1] tracking-tight text-white">
-              امتلك سيارة أحلامك من <span className="text-red-600">دبي</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-zinc-400 mb-12 leading-relaxed max-w-2xl font-light">
-              نحن في <span className="text-white font-bold">الطاس موتورز</span>{" "}
-              نذلل لك كافة الصعاب. فحص فني دقيق، شحن مباشر، وتخليص كافة الأوراق
-              القانونية.
-            </p>
-            <div className="flex flex-wrap gap-6">
-              <button
-                onClick={scrollToForm}
-                className="bg-red-600 hover:bg-red-700 text-white px-12 py-6 rounded-2xl font-black text-xl shadow-2xl transition-all hover:scale-105 active:scale-95"
-              >
-                ابدأ رحلة الاستيراد الآن
-              </button>
-              <button
-                onClick={() => {
-                  const section = document.getElementById("main-features");
-                  if (section) section.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="bg-zinc-800/50 hover:bg-zinc-700 text-white px-12 py-6 rounded-2xl font-bold text-xl backdrop-blur-sm border border-white/10 transition-all"
-              >
-                لماذا دبي؟
-              </button>
+        <div className="container mx-auto px-4 md:px-6 relative z-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start lg:items-center">
+            {/* Left Side: Hero Content */}
+            <div className="order-2 lg:order-1">
+              <span className="inline-block bg-red-600/20 text-red-500 border border-red-600/30 px-4 md:px-6 py-2 rounded-full text-xs md:text-sm font-black mb-6 md:mb-8 tracking-wide">
+                خدمة استيراد السيارات الحصرية لمصر
+              </span>
+              <h1 className="text-4xl md:text-6xl lg:text-8xl font-black mb-6 md:mb-8 leading-[1.1] tracking-tight text-white">
+                امتلك سيارة أحلامك من <span className="text-red-600">دبي</span>
+              </h1>
+              <p className="text-lg md:text-xl lg:text-2xl text-zinc-400 mb-8 md:mb-12 leading-relaxed font-light">
+                نحن في{" "}
+                <span className="text-white font-bold">الطاس موتورز</span> نذلل
+                لك كافة الصعاب. فحص فني دقيق، شحن مباشر، وتخليص كافة الأوراق
+                القانونية.
+              </p>
+              <div className="flex flex-wrap gap-4 md:gap-6">
+                <button
+                  onClick={scrollToForm}
+                  className="bg-red-600 hover:bg-red-700 text-white px-8 md:px-12 py-4 md:py-6 rounded-2xl font-black text-lg md:text-xl shadow-2xl transition-all hover:scale-105 active:scale-95"
+                >
+                  ابدأ رحلة الاستيراد الآن
+                </button>
+                <button
+                  onClick={() => {
+                    const section = document.getElementById("main-features");
+                    if (section) section.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="bg-zinc-800/50 hover:bg-zinc-700 text-white px-8 md:px-12 py-4 md:py-6 rounded-2xl font-bold text-lg md:text-xl backdrop-blur-sm border border-white/10 transition-all"
+                >
+                  لماذا دبي؟
+                </button>
+              </div>
+            </div>
+
+            {/* Right Side: The Premium Form */}
+            <div id="lead-form-section" className="order-1 lg:order-2">
+              <div className="bg-white rounded-[32px] md:rounded-[50px] shadow-[0_40px_120px_rgba(227,42,38,0.2)] p-6 md:p-10 lg:p-14 text-zinc-900 border-t-[12px] border-red-600">
+                {isSuccess ? (
+                  <div className="text-center py-16 animate-fade-in">
+                    <div className="w-28 h-28 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-10 text-6xl">
+                      ✓
+                    </div>
+                    <h3 className="text-4xl font-black mb-6">تم تسجيل طلبك!</h3>
+                    <p className="text-zinc-500 text-xl mb-12 leading-relaxed">
+                      سيقوم أحد مستشارينا في فرع دبي بمراجعة طلبك والتواصل معك
+                      هاتفياً قريباً جداً.
+                    </p>
+                    <button
+                      onClick={() => setIsSuccess(false)}
+                      className="text-red-600 font-bold text-xl hover:underline"
+                    >
+                      تقديم طلب استيراد آخر
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-8">
+                    <div className="mb-6 md:mb-10 text-center">
+                      <h2 className="text-2xl md:text-4xl lg:text-5xl font-black mb-3 md:mb-4 tracking-tight">
+                        طلب استشارة مجانية
+                      </h2>
+                      <p className="text-zinc-400 text-sm md:text-lg font-bold">
+                        اترك بياناتك وسنقوم بالرد على كافة استفساراتك حول
+                        الجمارك والشحن
+                      </p>
+                    </div>
+
+                    {error && (
+                      <div className="bg-red-50 text-red-600 p-6 rounded-3xl text-sm font-bold border border-red-100 animate-fade-in">
+                        {error}
+                      </div>
+                    )}
+
+                    <div className="space-y-2">
+                      <label className="text-sm font-black text-zinc-500 block mr-3">
+                        الاسم الثلاثي
+                      </label>
+                      <input
+                        type="text"
+                        name="fullName"
+                        required
+                        value={formData.fullName}
+                        onChange={handleChange}
+                        className="w-full px-6 md:px-8 py-4 md:py-5 rounded-[20px] md:rounded-[24px] border border-zinc-100 focus:ring-4 focus:ring-red-600/10 focus:border-red-600 outline-none bg-zinc-50 transition-all text-base md:text-xl font-bold placeholder:text-zinc-300"
+                        placeholder="أدخل اسمك بالكامل"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-sm font-black text-zinc-500 block mr-3">
+                        رقم الموبايل (واتساب)
+                      </label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        required
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="w-full px-6 md:px-8 py-4 md:py-5 rounded-[20px] md:rounded-[24px] border border-zinc-100 focus:ring-4 focus:ring-red-600/10 focus:border-red-600 outline-none bg-zinc-50 text-left transition-all text-base md:text-xl font-sans font-black placeholder:text-zinc-300"
+                        placeholder="01xxxxxxxxx"
+                        dir="ltr"
+                      />
+                    </div>
+
+                    <div className="space-y-2 w-full">
+                      <label className="text-sm font-black text-zinc-500 block mr-3">
+                        فئة السيارة
+                      </label>
+                      <select
+                        name="carType"
+                        value={formData.carType}
+                        onChange={handleChange}
+                        className="w-full px-6 md:px-8 py-4 md:py-5 rounded-[20px] md:rounded-[24px] border border-zinc-100 focus:ring-4 focus:ring-red-600/10 focus:border-red-600 outline-none bg-zinc-50 font-bold text-base md:text-lg appearance-none cursor-pointer"
+                      >
+                        <option>SUV → سيارة دفع رباعي</option>
+                        <option>Sports → رياضي</option>
+                        <option>Sedan → سيدان</option>
+                        <option>VAN → فان / شاحنة صغيرة</option>
+                        <option>Hatchback → هاتشباك</option>
+                      </select>
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full py-5 md:py-6 mt-6 rounded-[24px] md:rounded-[28px] bg-red-600 hover:bg-red-700 text-white font-black text-lg md:text-2xl shadow-[0_20px_60px_rgba(227,42,38,0.4)] transition-all hover:scale-[1.03] active:scale-95 disabled:opacity-50"
+                    >
+                      {isSubmitting
+                        ? "جاري إرسال الطلب..."
+                        : "تأكيد طلب الاستشارة"}
+                    </button>
+                    <p className="text-center text-zinc-400 text-sm font-bold">
+                      بإرسالك لهذا النموذج، فإنك توافق على سياسة الخصوصية الخاصة
+                      بنا
+                    </p>
+                  </form>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -248,172 +357,53 @@ const App = () => {
         </div>
       </div>
 
-      {/* Why Dubai & Form Section */}
+      {/* Why Dubai Section */}
       <section id="main-features" className="py-24 md:py-32 bg-zinc-950">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-stretch">
-            {/* Right Side: Information */}
-            <div className="flex flex-col">
-              <h2 className="text-4xl md:text-6xl font-black mb-12 text-white leading-tight">
-                لماذا تشتري سيارتك من دبي عبر الطاس؟
-              </h2>
-              <div className="flex flex-col justify-between flex-grow gap-8">
-                <div className="flex gap-8 p-10 bg-zinc-900/40 rounded-[40px] border border-zinc-800/50 flex-1 hover:bg-zinc-900/60 transition-colors shadow-xl">
-                  <div className="text-5xl text-red-600 shrink-0">💎</div>
-                  <div>
-                    <h4 className="text-2xl font-black text-white mb-3">
-                      تنوع غير محدود
-                    </h4>
-                    <p className="text-zinc-400 text-lg leading-relaxed">
-                      سوق دبي يضم أحدث الموديلات والمواصفات التي قد لا تتوفر في
-                      السوق المحلي، خاصة سيارات الزيرو والمستعملة بحالة الوكالة.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-8 p-10 bg-zinc-900/40 rounded-[40px] border border-zinc-800/50 flex-1 hover:bg-zinc-900/60 transition-colors shadow-xl">
-                  <div className="text-5xl text-red-600 shrink-0">🛡️</div>
-                  <div>
-                    <h4 className="text-2xl font-black text-white mb-3">
-                      فحص فني شامل (SGS)
-                    </h4>
-                    <p className="text-zinc-400 text-lg leading-relaxed">
-                      نقوم بفحص السيارة في مراكز متخصصة وتزويدك بتقرير مفصل عن
-                      كل قطعة قبل دفع درهم واحد.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-8 p-10 bg-zinc-900/40 rounded-[40px] border border-zinc-800/50 flex-1 hover:bg-zinc-900/60 transition-colors shadow-xl">
-                  <div className="text-5xl text-red-600 shrink-0">⚓</div>
-                  <div>
-                    <h4 className="text-2xl font-black text-white mb-3">
-                      لوجستيات متكاملة
-                    </h4>
-                    <p className="text-zinc-400 text-lg leading-relaxed">
-                      شحن بري سريع أو بحري مؤمن، مع إصدار شهادات المنشأ وفواتير
-                      التصدير الموثقة لضمان حقك.
-                    </p>
-                  </div>
-                </div>
+        <div className="container mx-auto px-4 md:px-6">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-12 md:mb-16 text-white leading-tight text-center md:text-right">
+            لماذا تشتري سيارتك من دبي عبر الطاس؟
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <div className="flex flex-col md:flex-row gap-6 md:gap-8 p-6 md:p-10 bg-zinc-900/40 rounded-[32px] md:rounded-[40px] border border-zinc-800/50 hover:bg-zinc-900/60 transition-colors shadow-xl">
+              <div className="text-4xl md:text-5xl text-red-600 shrink-0">
+                💎
+              </div>
+              <div>
+                <h4 className="text-xl md:text-2xl font-black text-white mb-3">
+                  تنوع غير محدود
+                </h4>
+                <p className="text-base md:text-lg text-zinc-400 leading-relaxed">
+                  سوق دبي يضم أحدث الموديلات والمواصفات التي قد لا تتوفر في
+                  السوق المحلي، خاصة سيارات الزيرو والمستعملة بحالة الوكالة.
+                </p>
               </div>
             </div>
-
-            {/* Left Side: The Premium Form */}
-            <div id="lead-form-section" className="flex flex-col">
-              <div className="bg-white rounded-[50px] shadow-[0_40px_120px_rgba(227,42,38,0.2)] p-10 md:p-14 text-zinc-900 border-t-[12px] border-red-600 h-full flex flex-col justify-center">
-                {isSuccess ? (
-                  <div className="text-center py-16 animate-fade-in">
-                    <div className="w-28 h-28 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-10 text-6xl">
-                      ✓
-                    </div>
-                    <h3 className="text-4xl font-black mb-6">تم تسجيل طلبك!</h3>
-                    <p className="text-zinc-500 text-xl mb-12 leading-relaxed">
-                      سيقوم أحد مستشارينا في فرع دبي بمراجعة طلبك والتواصل معك
-                      هاتفياً قريباً جداً.
-                    </p>
-                    <button
-                      onClick={() => setIsSuccess(false)}
-                      className="text-red-600 font-bold text-xl hover:underline"
-                    >
-                      تقديم طلب استيراد آخر
-                    </button>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-8">
-                    <div className="mb-10 text-center">
-                      <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight">
-                        طلب استشارة مجانية
-                      </h2>
-                      <p className="text-zinc-400 text-lg font-bold">
-                        اترك بياناتك وسنقوم بالرد على كافة استفساراتك حول
-                        الجمارك والشحن
-                      </p>
-                    </div>
-
-                    {error && (
-                      <div className="bg-red-50 text-red-600 p-6 rounded-3xl text-sm font-bold border border-red-100 animate-fade-in">
-                        {error}
-                      </div>
-                    )}
-
-                    <div className="space-y-2">
-                      <label className="text-sm font-black text-zinc-500 block mr-3">
-                        الاسم الثلاثي
-                      </label>
-                      <input
-                        type="text"
-                        name="fullName"
-                        required
-                        value={formData.fullName}
-                        onChange={handleChange}
-                        className="w-full px-8 py-5 rounded-[24px] border border-zinc-100 focus:ring-4 focus:ring-red-600/10 focus:border-red-600 outline-none bg-zinc-50 transition-all text-xl font-bold placeholder:text-zinc-300"
-                        placeholder="أدخل اسمك بالكامل"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <label className="text-sm font-black text-zinc-500 block mr-3">
-                        رقم الموبايل (واتساب)
-                      </label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        required
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full px-8 py-5 rounded-[24px] border border-zinc-100 focus:ring-4 focus:ring-red-600/10 focus:border-red-600 outline-none bg-zinc-50 text-left transition-all text-xl font-sans font-black placeholder:text-zinc-300"
-                        placeholder="01xxxxxxxxx"
-                        dir="ltr"
-                      />
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <label className="text-sm font-black text-zinc-500 block mr-3">
-                          فئة السيارة
-                        </label>
-                        <select
-                          name="carType"
-                          value={formData.carType}
-                          onChange={handleChange}
-                          className="w-full px-8 py-5 rounded-[24px] border border-zinc-100 focus:ring-4 focus:ring-red-600/10 focus:border-red-600 outline-none bg-zinc-50 font-bold text-lg appearance-none cursor-pointer"
-                        >
-                          <option>SUV → سيارة دفع رباعي</option>
-                          <option>Sports → رياضي</option>
-                          <option>Sedan → سيدان</option>
-                          <option>VAN → فان / شاحنة صغيرة</option>
-                          <option>Hatchback → هاتشباك</option>
-                        </select>
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-black text-zinc-500 block mr-3">
-                          الميزانية المتوقعة
-                        </label>
-                        <input
-                          type="text"
-                          name="budget"
-                          value={formData.budget}
-                          onChange={handleChange}
-                          className="w-full px-8 py-5 rounded-[24px] border border-zinc-100 focus:ring-4 focus:ring-red-600/10 focus:border-red-600 outline-none bg-zinc-50 text-lg font-bold placeholder:text-zinc-300"
-                          placeholder="مثال: مليون ج.م"
-                        />
-                      </div>
-                    </div>
-
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full py-6 mt-6 rounded-[28px] bg-red-600 hover:bg-red-700 text-white font-black text-2xl shadow-[0_20px_60px_rgba(227,42,38,0.4)] transition-all hover:scale-[1.03] active:scale-95 disabled:opacity-50"
-                    >
-                      {isSubmitting
-                        ? "جاري إرسال الطلب..."
-                        : "تأكيد طلب الاستشارة"}
-                    </button>
-                    <p className="text-center text-zinc-400 text-sm font-bold">
-                      بإرسالك لهذا النموذج، فإنك توافق على سياسة الخصوصية الخاصة
-                      بنا
-                    </p>
-                  </form>
-                )}
+            <div className="flex flex-col md:flex-row gap-6 md:gap-8 p-6 md:p-10 bg-zinc-900/40 rounded-[32px] md:rounded-[40px] border border-zinc-800/50 hover:bg-zinc-900/60 transition-colors shadow-xl">
+              <div className="text-4xl md:text-5xl text-red-600 shrink-0">
+                🛡️
+              </div>
+              <div>
+                <h4 className="text-xl md:text-2xl font-black text-white mb-3">
+                  فحص فني شامل (SGS)
+                </h4>
+                <p className="text-base md:text-lg text-zinc-400 leading-relaxed">
+                  نقوم بفحص السيارة في مراكز متخصصة وتزويدك بتقرير مفصل عن كل
+                  قطعة قبل دفع درهم واحد.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col md:flex-row gap-6 md:gap-8 p-6 md:p-10 bg-zinc-900/40 rounded-[32px] md:rounded-[40px] border border-zinc-800/50 hover:bg-zinc-900/60 transition-colors shadow-xl">
+              <div className="text-4xl md:text-5xl text-red-600 shrink-0">
+                ⚓
+              </div>
+              <div>
+                <h4 className="text-xl md:text-2xl font-black text-white mb-3">
+                  لوجستيات متكاملة
+                </h4>
+                <p className="text-base md:text-lg text-zinc-400 leading-relaxed">
+                  شحن بري سريع أو بحري مؤمن، مع إصدار شهادات المنشأ وفواتير
+                  التصدير الموثقة لضمان حقك.
+                </p>
               </div>
             </div>
           </div>
@@ -502,7 +492,7 @@ const App = () => {
       <footer className="bg-black py-24 border-t border-zinc-800">
         <div className="container mx-auto px-6 text-center">
           <img
-            src={logoUrl}
+            src={logo}
             alt="Altass Motors"
             className="h-14 mx-auto mb-12 opacity-90"
           />
