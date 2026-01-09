@@ -529,14 +529,14 @@ const App = () => {
       </footer>
 
       {/* Sticky Bottom CTA for Mobile */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 p-6 bg-black/60 backdrop-blur-2xl z-50 border-t border-white/5">
+      {/* <div className="md:hidden fixed bottom-0 left-0 right-0 p-6 bg-black/60 backdrop-blur-2xl z-50 border-t border-white/5">
         <button
           onClick={scrollToForm}
           className="w-full bg-red-600 text-white py-5 rounded-[24px] font-black text-2xl shadow-[0_10px_40px_rgba(227,42,38,0.5)] active:scale-95 transition-all"
         >
           سجل طلبك الآن
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
