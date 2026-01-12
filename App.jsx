@@ -16,7 +16,7 @@ const App = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     phone: "",
-    carType: "SUV (دفع رباعي)",
+    carType: "Hyundai",
     budget: "",
   });
 
@@ -167,7 +167,8 @@ const App = () => {
 
   return (
     <div
-      className="min-h-screen flex flex-col font-['Cairo'] bg-black text-zinc-100 overflow-x-hidden"
+      className="min-h-screen flex flex-col bg-black text-zinc-100 overflow-x-hidden"
+      style={{ fontFamily: "'GS-SS', sans-serif" }}
       dir="rtl"
     >
       {/* Premium Header */}
@@ -295,7 +296,7 @@ const App = () => {
                         required
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-6 md:px-8 py-4 md:py-5 rounded-[20px] md:rounded-[24px] border border-zinc-100 focus:ring-4 focus:ring-red-600/10 focus:border-red-600 outline-none bg-zinc-50 text-left transition-all text-base md:text-xl font-sans font-black placeholder:text-zinc-300"
+                        className="w-full px-6 md:px-8 py-4 md:py-5 rounded-[20px] md:rounded-[24px] border border-zinc-100 focus:ring-4 focus:ring-red-600/10 focus:border-red-600 outline-none bg-zinc-50 text-left transition-all text-base md:text-xl font-black placeholder:text-zinc-300"
                         placeholder="01xxxxxxxxx"
                         dir="ltr"
                       />
@@ -303,7 +304,7 @@ const App = () => {
 
                     <div className="space-y-2 w-full">
                       <label className="text-sm font-black text-zinc-500 block mr-3">
-                        فئة السيارة
+                        العلامة التجارية
                       </label>
                       <select
                         name="carType"
@@ -311,11 +312,27 @@ const App = () => {
                         onChange={handleChange}
                         className="w-full px-6 md:px-8 py-4 md:py-5 rounded-[20px] md:rounded-[24px] border border-zinc-100 focus:ring-4 focus:ring-red-600/10 focus:border-red-600 outline-none bg-zinc-50 font-bold text-base md:text-lg appearance-none cursor-pointer"
                       >
-                        <option>SUV → سيارة دفع رباعي</option>
-                        <option>Sports → رياضي</option>
-                        <option>Sedan → سيدان</option>
-                        <option>VAN → فان / شاحنة صغيرة</option>
-                        <option>Hatchback → هاتشباك</option>
+                        <option>Hyundai</option>
+                        <option>Audi</option>
+                        <option>Range Rover</option>
+                        <option>BMW</option>
+                        <option>Chevrolet</option>
+                        <option>Cadillac</option>
+                        <option>GMC</option>
+                        <option>Nissan</option>
+                        <option>Toyota</option>
+                        <option>Infiniti</option>
+                        <option>Bestune</option>
+                        <option>Peugeot</option>
+                        <option>Dongfeng</option>
+                        <option>Mercedes</option>
+                        <option>BYD</option>
+                        <option>KIA</option>
+                        <option>Honda</option>
+                        <option>VolksWagen</option>
+                        <option>MG</option>
+                        <option>Avatr</option>
+                        <option>Skoda</option>
                       </select>
                     </div>
 
@@ -480,8 +497,8 @@ const App = () => {
                 شهادة يورو 1
               </h5>
               <p className="text-base text-zinc-400 leading-relaxed font-medium">
-                نوفر السيارات الأوروبية المنشأ في دبي مع التأكد من إمكانية
-                استخراج الشهادات المطلوبة لخفض الجمارك لأقصى حد.
+                نوفر سيارات من جميع العلامات التجارية العالمية في دبي مع التأكد
+                من إمكانية استخراج الشهادات المطلوبة لخفض الجمارك لأقصى حد.
               </p>
             </div>
           </div>
